@@ -29,14 +29,35 @@ export class AuthService {
     return null;
   }
 
-  isAuthenticated(): boolean {
+  isTokenExpired(): boolean {
     const token = this.getToken();
     if (token) {
       const decodedToken = this.getDecodedToken();
       const expirationDate = decodedToken ? decodedToken.exp * 1000 : null;
-      return expirationDate ? new Date().getTime() < expirationDate : false;
+      if (expirationDate) {
+        return new Date().getTime() >= expirationDate;
+      }
     }
-    return false;
+    return true;
+  }
+
+  isAuthenticated(): boolean {
+    const isExpired = this.isTokenExpired();
+    if (isExpired) {
+      this.logout();
+      return false;
+    }
+    return true;
+  }
+
+  isAdmin(): boolean {
+    const decodedToken = this.getDecodedToken();
+    return decodedToken && decodedToken.Role === 'ADMIN';
+  }
+
+  getUserId(): number | null {
+    const decodedToken = this.getDecodedToken();
+    return decodedToken ? decodedToken.ID_Korisnika : null;
   }
 
   logout() {
