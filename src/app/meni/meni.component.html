@@ -1,1 +1,30 @@
-<p>meni works!</p>
+<!-- src/app/meni/meni.component.html -->
+<div class="container">
+  <h2>Meniji</h2>
+  <div class="row">
+    <div class="col-md-4" *ngFor="let meni of meniji; let i = index">
+      <div class="card mb-4 shadow-sm">
+        <div class="card-header">
+          <h4 class="my-0 font-weight-normal">Meni {{ i + 1 }}</h4>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{ meni.naziv }}</h5>
+          <ul class="list-unstyled mt-3 mb-4">
+            <!-- Prikaz artikala iz menija ovde -->
+          </ul>
+          <button class="btn btn-lg btn-primary" (click)="updateMeni(meni)">Izmeni</button>
+          <button class="btn btn-lg btn-danger" (click)="deleteMeni(meni.id)">Obriši</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card mb-4 shadow-sm">
+    <div class="card-header">
+      <h4 class="my-0 font-weight-normal">Dodaj novi meni</h4>
+    </div>
+    <div class="card-body">
+      <input [(ngModel)]="newMeni.naziv" placeholder="Naziv" class="form-control mb-2">
+      <button class="btn btn-lg btn-success" (click)="addMeni()">Dodaj</button>
+    </div>
+  </div>
+</div>

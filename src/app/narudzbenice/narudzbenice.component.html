@@ -1,1 +1,39 @@
-<p>narudzbenice works!</p>
+<!-- src/app/narudzbenice/narudzbenice.component.html -->
+<div class="container">
+  <h2>Narudžbenice</h2>
+  <table class="table table-bordered">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Vlasnik</th>
+      <th>Datum Narudžbine</th>
+      <th>Akcije</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let narudzbenica of narudzbenice">
+      <td>{{ narudzbenica.id }}</td>
+      <td>{{ narudzbenica.vlasnikID.ime }} {{ narudzbenica.vlasnikID.prezime }}</td>
+      <td><input [(ngModel)]="narudzbenica.datumNarudzbine" type="date" class="form-control"></td>
+      <td>
+        <button class="btn btn-success" (click)="updateNarudzbenica(narudzbenica)">Izmeni</button>
+        <button *ngIf="authService.isAdmin()" class="btn btn-danger" (click)="deleteNarudzbenica(narudzbenica.id)">Obriši</button>
+      </td>
+    </tr>
+    <tr>
+      <td>New</td>
+      <td>
+        <select [(ngModel)]="newNarudzbenica.vlasnikID.id" class="form-control">
+          <option *ngFor="let vlasnik of narudzbenice" [ngValue]="vlasnik.vlasnikID.id">
+            {{ vlasnik.vlasnikID.ime }} {{ vlasnik.vlasnikID.prezime }}
+          </option>
+        </select>
+      </td>
+      <td><input [(ngModel)]="newNarudzbenica.datumNarudzbine" type="date" class="form-control"></td>
+      <td>
+        <button class="btn btn-primary" (click)="addNarudzbenica()">Dodaj</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

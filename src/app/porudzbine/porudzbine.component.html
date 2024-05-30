@@ -1,1 +1,42 @@
-<p>porudzbine works!</p>
+<!-- src/app/porudzbine/porudzbine.component.html -->
+<div class="container">
+  <h2>Porudžbine</h2>
+  <table class="table table-bordered">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Sto</th>
+      <th>Radnik</th>
+      <th>Vreme Porudžbine</th>
+      <th>Akcije</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let porudzbina of porudzbine">
+      <td>{{ porudzbina.id }}</td>
+      <td><input [(ngModel)]="porudzbina.sto" type="number" class="form-control"></td>
+      <td>{{ porudzbina.radnikID.ime }} {{ porudzbina.radnikID.prezime }}</td>
+      <td><input [(ngModel)]="porudzbina.vremePorudzbine" type="datetime-local" class="form-control"></td>
+      <td>
+        <button class="btn btn-success" (click)="updatePorudzbina(porudzbina)">Izmeni</button>
+        <button class="btn btn-danger" (click)="deletePorudzbina(porudzbina.id)">Obriši</button>
+      </td>
+    </tr>
+    <tr>
+      <td>New</td>
+      <td><input [(ngModel)]="newPorudzbina.sto" type="number" class="form-control"></td>
+      <td>
+        <select [(ngModel)]="newPorudzbina.radnikID.id" class="form-control">
+          <option *ngFor="let radnik of porudzbine" [ngValue]="radnik.radnikID.id">
+            {{ radnik.radnikID.ime }} {{ radnik.radnikID.prezime }}
+          </option>
+        </select>
+      </td>
+      <td><input [(ngModel)]="formattedNewVremePorudzbine" (ngModelChange)="formattedNewVremePorudzbine=$event" type="datetime-local" class="form-control"></td>
+      <td>
+        <button class="btn btn-primary" (click)="addPorudzbina()">Dodaj</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
