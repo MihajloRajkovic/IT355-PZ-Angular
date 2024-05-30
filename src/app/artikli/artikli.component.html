@@ -1,0 +1,36 @@
+
+<div class="container">
+  <h2>Artikli</h2>
+  <table class="table table-bordered">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Naziv</th>
+      <th>Cena</th>
+      <th>Količina na stanju</th>
+      <th>Akcije</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let artikal of artikli">
+      <td>{{ artikal.id }}</td>
+      <td><input [(ngModel)]="artikal.naziv" class="form-control"></td>
+      <td><input [(ngModel)]="artikal.cena" type="number" class="form-control"></td>
+      <td><input [(ngModel)]="artikal.kolicinaNaStanju" type="number" class="form-control"></td>
+      <td>
+        <button class="btn btn-success" (click)="updateArtikal(artikal)">Izmeni</button>
+        <button *ngIf="isAdmin" class="btn btn-danger" (click)="deleteArtikal(artikal.id)">Obriši</button>
+      </td>
+    </tr>
+    <tr *ngIf="isAdmin">
+      <td>New</td>
+      <td><input [(ngModel)]="newArtikal.naziv" class="form-control"></td>
+      <td><input [(ngModel)]="newArtikal.cena" type="number" class="form-control"></td>
+      <td><input [(ngModel)]="newArtikal.kolicinaNaStanju" type="number" class="form-control"></td>
+      <td>
+        <button class="btn btn-primary" (click)="addArtikal()">Dodaj</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
