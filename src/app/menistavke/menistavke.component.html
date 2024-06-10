@@ -1,0 +1,15 @@
+<div class="container">
+  <h2>Dodaj Stavke u Meni</h2>
+  <div class="form-group">
+    <label for="artikli">Izaberi Artikle:</label>
+    <select [(ngModel)]="selectedArtikli" class="form-control" id="artikli" multiple>
+      <option *ngFor="let artikal of artikli" [value]="artikal.id">{{ artikal.naziv }}</option>
+    </select>
+  </div>
+  <button class="btn btn-primary mt-3" (click)="addStavkeToMeni()">Dodaj Artikle</button>
+  <h3 class="mt-4">Stavke u Meniju</h3>
+  <ul>
+    <li *ngFor="let stavka of meniStavke">{{ stavka.artikalID.naziv }}</li>
+  </ul>
+  <button class="btn btn-secondary mt-3" (click)="goBack()">Gotovo</button>
+</div>

@@ -1,1 +1,48 @@
-<p>finansije works!</p>
+<!-- src/app/finansije/finansije.component.html -->
+<div class="container">
+  <h2>Finansije</h2>
+  <div style="display: block;">
+    <canvas baseChart
+            [datasets]="barChartData"
+            [labels]="barChartLabels"
+            [options]="barChartOptions"
+            [legend]="barChartLegend"
+            [type]="barChartType">
+    </canvas>
+  </div>
+  <table class="table table-bordered mt-4">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Datum</th>
+      <th>Zarada</th>
+      <th>Potrošnja</th>
+      <th>Plate Radnika</th>
+      <th>Akcije</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let finansija of finansije">
+      <td>{{ finansija.id }}</td>
+      <td><input [(ngModel)]="finansija.datum" type="date" class="form-control"></td>
+      <td><input [(ngModel)]="finansija.zarada" type="number" class="form-control"></td>
+      <td><input [(ngModel)]="finansija.potrosnja" type="number" class="form-control"></td>
+      <td><input [(ngModel)]="finansija.plateRadnika" type="number" class="form-control"></td>
+      <td>
+        <button class="btn btn-success" (click)="updateFinansije(finansija)">Izmeni</button>
+        <button class="btn btn-danger" (click)="deleteFinansije(finansija.id)">Obriši</button>
+      </td>
+    </tr>
+    <tr>
+      <td>New</td>
+      <td><input [(ngModel)]="newFinansija.datum" type="date" class="form-control"></td>
+      <td><input [(ngModel)]="newFinansija.zarada" type="number" class="form-control"></td>
+      <td><input [(ngModel)]="newFinansija.potrosnja" type="number" class="form-control"></td>
+      <td><input [(ngModel)]="newFinansija.plateRadnika" type="number" class="form-control"></td>
+      <td>
+        <button class="btn btn-primary" (click)="addFinansije()">Dodaj</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,1 +1,72 @@
-<p>korisnici works!</p>
+<!-- src/app/korisnici/korisnici.component.html -->
+<div class="container" *ngIf="isAdmin()">
+  <h2>Korisnici</h2>
+  <div class="row">
+    <div class="col-sm-4" *ngFor="let korisnik of korisnici">
+      <div class="card mb-3">
+        <div class="card-body">
+          <h5 class="card-title">{{ korisnik.ime }} {{ korisnik.prezime }}</h5>
+          <p class="card-text"><strong>Korisničko Ime:</strong> {{ korisnik.korisnickoIme }}</p>
+          <div class="form-group">
+            <label for="tipKorisnika">Tip Korisnika:</label>
+            <select [(ngModel)]="korisnik.tipKorisnika" class="form-control">
+              <option value="konobar">Konobar</option>
+              <option value="kuvar">Kuvar</option>
+              <option value="menadzer">Menadžer</option>
+              <option value="sanker">Šanker</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="role">Role:</label>
+            <select [(ngModel)]="korisnik.role" class="form-control">
+              <option value="USER">USER</option>
+              <option value="ADMIN">ADMIN</option>
+            </select>
+          </div>
+          <button class="btn btn-success mt-3" (click)="updateKorisnik(korisnik)">Izmeni</button>
+          <button class="btn btn-danger mt-3" (click)="deleteKorisnik(korisnik.id)">Obriši</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="card mb-3">
+        <div class="card-body">
+          <h5 class="card-title">Novi Korisnik</h5>
+          <div class="form-group">
+            <label for="ime">Ime:</label>
+            <input [(ngModel)]="newKorisnik.ime" type="text" class="form-control" id="ime">
+          </div>
+          <div class="form-group">
+            <label for="prezime">Prezime:</label>
+            <input [(ngModel)]="newKorisnik.prezime" type="text" class="form-control" id="prezime">
+          </div>
+          <div class="form-group">
+            <label for="korisnickoIme">Korisničko Ime:</label>
+            <input [(ngModel)]="newKorisnik.korisnickoIme" type="text" class="form-control" id="korisnickoIme">
+          </div>
+          <div class="form-group">
+            <label for="lozinka">Lozinka:</label>
+            <input [(ngModel)]="newKorisnik.lozinka" type="password" class="form-control" id="lozinka">
+          </div>
+          <div class="form-group">
+            <label for="tipKorisnika">Tip Korisnika:</label>
+            <select [(ngModel)]="newKorisnik.tipKorisnika" class="form-control">
+              <option value="konobar">Konobar</option>
+              <option value="kuvar">Kuvar</option>
+              <option value="menadzer">Menadžer</option>
+              <option value="sanker">Šanker</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="role">Role:</label>
+            <select [(ngModel)]="newKorisnik.role" class="form-control">
+              <option value="USER">USER</option>
+              <option value="ADMIN">ADMIN</option>
+            </select>
+          </div>
+          <button class="btn btn-primary mt-3" (click)="addKorisnik()">Dodaj</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -15,6 +15,8 @@ import { NarudzbeniceComponent } from './narudzbenice/narudzbenice.component';
 import { FinansijeComponent } from './finansije/finansije.component';
 import { KorisniciComponent } from './korisnici/korisnici.component';
 import {AuthInterceptor} from "./auth/authInterceptor";
+import { NgChartsModule } from 'ng2-charts';
+import { MeniStavkeComponent } from './menistavke/menistavke.component';
 
 @NgModule({
   declarations: [
@@ -27,14 +29,15 @@ import {AuthInterceptor} from "./auth/authInterceptor";
     PorudzbineComponent,
     NarudzbeniceComponent,
     FinansijeComponent,
-    KorisniciComponent
+    KorisniciComponent,
+    MeniStavkeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-
+    NgChartsModule
   ],
   providers: [ { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]

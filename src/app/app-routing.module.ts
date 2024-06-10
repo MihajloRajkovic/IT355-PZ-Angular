@@ -8,6 +8,8 @@ import {NarudzbeniceComponent} from "./narudzbenice/narudzbenice.component";
 import {FinansijeComponent} from "./finansije/finansije.component";
 import {KorisniciComponent} from "./korisnici/korisnici.component";
 import {MeniComponent} from "./meni/meni.component";
+import {MeniStavkeComponent} from "./menistavke/menistavke.component";
+
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -19,6 +21,7 @@ const routes: Routes = [
   { path: 'finansije', component: FinansijeComponent },
   { path: 'korisnici', component: KorisniciComponent },
   { path: 'meni', component: MeniComponent },
+  { path: 'meni/:id/stavke', component: MeniStavkeComponent },
 
 ];
 
